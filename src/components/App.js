@@ -61,6 +61,25 @@ function reducer(state, action) {
         highscore:
          state.points > state.highscore ? state.points : state.highscore,
       };
+    case "restart":
+      /*
+      //solution 1
+      return {
+        ...state,
+        status: "ready",
+        index: 0,
+        answer: null,
+        points: 0,
+        highscore: 0,
+      };
+      */
+     //solution 2
+     return{
+      ...initialState,
+      questions: state.questions,
+      status: 'ready'
+     }
+    
     default:
       throw new Error("Action unkonwn");
   }
@@ -122,6 +141,7 @@ export default function App() {
             points={points}
             maxPossiblePoints={maxPossiblePoints}
             highscore={highscore}
+            dispatch={dispatch}
           />
         )}
       </Main>
